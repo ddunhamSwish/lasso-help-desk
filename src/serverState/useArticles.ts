@@ -34,7 +34,7 @@ type Articles = {
   articles: Article[];
 };
 
-const useArticles = (token?: string) => {
+const useArticles = () => {
   return useQuery<Articles>({
     queryKey: ["ARTICLES"],
     queryFn: async () => {
@@ -43,7 +43,9 @@ const useArticles = (token?: string) => {
         url: "https://swishdata.zendesk.com/api/v2/help_center/articles",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Basic ${window.btoa(
+            `ddunham@swishdata.com/token:${import.meta.env.VITE_API_KEY}`
+          )}`,
         },
       };
       return axios(config).then((res) => res.data as Articles);
@@ -51,7 +53,6 @@ const useArticles = (token?: string) => {
     staleTime: Infinity,
     gcTime: Infinity,
     retry: 3,
-    enabled: Boolean(token),
   });
 };
 

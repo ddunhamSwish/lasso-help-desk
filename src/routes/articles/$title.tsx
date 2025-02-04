@@ -3,7 +3,6 @@ import useArticles from "../../serverState/useArticles";
 import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 import { Article as ArticleType } from "../../serverState/useArticles";
-import useToken from "../../serverState/useToken";
 
 export const Route = createFileRoute("/articles/$title")({
   component: Article,
@@ -11,10 +10,7 @@ export const Route = createFileRoute("/articles/$title")({
 
 function Article() {
   const { title } = useParams({ strict: false });
-  const { data: token } = useToken(
-    localStorage.getItem("ZENDESK_CODE") ?? undefined
-  );
-  const { data } = useArticles(token);
+  const { data } = useArticles();
   const [article, setArticle] = useState<ArticleType | null>(null);
 
   useEffect(() => {
