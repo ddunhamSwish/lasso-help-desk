@@ -1,5 +1,4 @@
 import { createRootRoute, Outlet, useNavigate } from "@tanstack/react-router";
-import swish_logo from "../assets/swish_logo.png";
 
 export const Route = createRootRoute({
   component: Header,
@@ -9,12 +8,17 @@ function Header() {
   const navigate = useNavigate();
 
   return (
-    <div id="container">
-      <div id="header" onClick={() => navigate({ to: "/" })}>
-        <img src={swish_logo} height={50} />
-        <h1>Swish Demo Help Desk</h1>
+    <>
+      <div id="title" onClick={() => navigate({ to: "/" })} style={{}}>
+        <img
+          src="https://swishdata.zendesk.com/hc/theming_assets/01JBYJ39HYFD8G2P4GE9Z05PK1"
+          height={50}
+        />
+        <h1 style={{ color: "white" }}>Lasso Demo Help Desk</h1>
       </div>
-      <Outlet />
-    </div>
+      <div id="body">
+        <Outlet />
+      </div>
+    </>
   );
 }
