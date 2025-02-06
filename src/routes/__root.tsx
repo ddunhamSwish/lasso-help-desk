@@ -1,4 +1,6 @@
 import { createRootRoute, Outlet, useNavigate } from "@tanstack/react-router";
+import useQueryStore from "../store";
+import { useState } from "react";
 
 export const Route = createRootRoute({
   component: Header,
@@ -6,6 +8,13 @@ export const Route = createRootRoute({
 
 function Header() {
   const navigate = useNavigate();
+  const [query, setQuery] = useState<string>("");
+  const setSearch = useQueryStore((state) => state.setSearch);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSearch(query);
+  };
 
   return (
     <>
@@ -22,10 +31,12 @@ function Header() {
             Search for answers to your questions by entering keywords below, or
             look through our knowledge base.
           </p>
-          <form id="knowledge-search">
+          <form id="knowledge-search" onSubmit={handleSubmit}>
             <input
               placeholder="Search the helpcenter..."
               id="knowledge-input"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
             />
             <button type="submit" id="knowledge-search-button">
               Search
