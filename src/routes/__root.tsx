@@ -13,7 +13,7 @@ function Header() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSearch(query);
+    setSearch(query.toLowerCase());
   };
 
   return (

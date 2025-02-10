@@ -21,7 +21,9 @@ function Home() {
     if (data) {
       if (search.length > 0) {
         setArticles(
-          data.articles.filter((article) => article.title.includes(search))
+          data.articles.filter((article) =>
+            article.title.toLowerCase().includes(search)
+          )
         );
       } else {
         setArticles(data.articles);
