@@ -21,5 +21,10 @@ function Article() {
 
   const bodyContent = DOMPurify.sanitize(article?.body || "");
 
-  return <div dangerouslySetInnerHTML={{ __html: bodyContent }}></div>;
+  return (
+    <div>
+      <h1>{article?.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: bodyContent }}></div>;
+    </div>
+  );
 }
