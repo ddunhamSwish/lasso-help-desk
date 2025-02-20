@@ -24,7 +24,7 @@ function Article() {
   return (
     <div>
       <h1>{article?.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: bodyContent }}></div>;
+      <div dangerouslySetInnerHTML={{ __html: bodyContent }}></div>
     </div>
   );
 }
